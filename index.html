@@ -222,8 +222,8 @@
     /* Main Container */
     .container { 
       max-width: 1400px; 
-      margin: -4rem auto 2rem; 
-      padding: 4rem; 
+      margin: 2em auto 2rem; 
+      padding: 1rem; 
       background: white; 
       border-radius: 30px; 
       box-shadow: 0 20px 50px rgba(0,0,0,0.2);
@@ -789,6 +789,81 @@
       width: 100%;
     }
 
+    /* Mobile Hamburger Menu */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+      padding: 0.5rem;
+      z-index: 1001;
+    }
+
+    .hamburger span {
+      display: block;
+      height: 3px;
+      width: 25px;
+      background: white;
+      margin: 3px 0;
+      transition: all 0.3s ease;
+      transform-origin: center;
+    }
+
+    .hamburger.active span:nth-child(1) {
+      transform: rotate(45deg) translate(6px, 6px);
+    }
+
+    .hamburger.active span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .hamburger.active span:nth-child(3) {
+      transform: rotate(-45deg) translate(6px, -6px);
+    }
+
+    .mobile-nav {
+      position: fixed;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100vh;
+      background: linear-gradient(135deg, rgba(26, 26, 46, 0.98), rgba(22, 33, 62, 0.98));
+      backdrop-filter: blur(20px);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      transition: left 0.4s ease;
+      z-index: 1000;
+    }
+
+    .mobile-nav.active {
+      left: 0;
+    }
+
+    .mobile-nav .nav-links {
+      display: flex;
+      flex-direction: column;
+      gap: 3rem;
+      text-align: center;
+    }
+
+    .mobile-nav .nav-links a {
+      color: white;
+      font-size: 2rem;
+      font-weight: 600;
+      text-decoration: none;
+      padding: 1rem;
+      border-radius: 10px;
+      transition: all 0.3s ease;
+      border: 2px solid transparent;
+    }
+
+    .mobile-nav .nav-links a:hover {
+      color: #d4af37;
+      border-color: rgba(212, 175, 55, 0.5);
+      background: rgba(212, 175, 55, 0.1);
+    }
+
     /* Footer */
     footer { 
       background: #1a1a2e; 
@@ -865,14 +940,21 @@
       header h1 { font-size: 3rem; }
       .main-subtitle { font-size: 1.8rem; }
       .location-text { font-size: 1.2rem; }
+      .header-content {
+        padding-top: 250px; /* adjust the value as needed */
+      }
       
       .container { 
         padding: 2.5rem; 
-        margin: -3rem 1rem 2rem;
+        margin: 14rem 1rem 2rem;
       }
       
       .nav-links {
         display: none;
+      }
+
+      .hamburger {
+        display: flex;
       }
       
       h2 { font-size: 2.4rem; }
@@ -907,6 +989,13 @@
       .secondary-cta {
         padding: 1rem 2rem;
         font-size: 1.1rem;
+      }
+
+      .cta-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
       }
     }
 
@@ -1029,8 +1118,26 @@
         <li><a href="#testimonials">Reviews</a></li>
         <li><a href="#book">Book Now</a></li>
       </ul>
+      
+      <!-- Mobile Hamburger Menu -->
+      <div class="hamburger" id="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
     </div>
   </nav>
+
+  <!-- Mobile Navigation Overlay -->
+  <div class="mobile-nav" id="mobileNav">
+    <ul class="nav-links">
+      <li><a href="#coverage" onclick="closeMobileNav()">Coverage</a></li>
+      <li><a href="#network" onclick="closeMobileNav()">Our Network</a></li>
+      <li><a href="#services" onclick="closeMobileNav()">Services</a></li>
+      <li><a href="#testimonials" onclick="closeMobileNav()">Reviews</a></li>
+      <li><a href="#book" onclick="closeMobileNav()">Book Now</a></li>
+    </ul>
+  </div>
 
   <!-- Header -->
   <header id="top">
@@ -1177,6 +1284,38 @@
             <li>Midland</li>
             <li>Penetanguishene</li>
             <li>Innisfil</li>
+          </ul>
+        </div>
+        
+        <div class="area-group">
+          <h3>Central Eastern Ontario</h3>
+          <ul class="cities-list">
+            <li>Peterborough</li>
+            <li>Kawartha Lakes</li>
+            <li>Durham Region</li>
+            <li>Clarington</li>
+            <li>Port Hope</li>
+            <li>Cobourg</li>
+            <li>Lindsay</li>
+            <li>Haliburton</li>
+            <li>Minden</li>
+            <li>Bancroft</li>
+          </ul>
+        </div>
+        
+        <div class="area-group">
+          <h3>Cottage Country & North</h3>
+          <ul class="cities-list">
+            <li>Muskoka District</li>
+            <li>Gravenhurst</li>
+            <li>Bracebridge</li>
+            <li>Huntsville</li>
+            <li>Parry Sound</li>
+            <li>Algonquin Park Area</li>
+            <li>Whitney</li>
+            <li>Barry's Bay</li>
+            <li>Dwight</li>
+            <li>Lake of Bays</li>
           </ul>
         </div>
         
@@ -1505,9 +1644,10 @@
             <li>Southwestern Ontario</li>
             <li>Waterloo Region</li>
             <li>Central Ontario</li>
+            <li>Central Eastern Ontario</li>
             <li>Eastern Ontario</li>
             <li>Niagara Region</li>
-            <li>Muskoka District</li>
+            <li>Cottage Country & North</li>
           </ul>
         </div>
         
@@ -1543,7 +1683,7 @@
       
       <p>&copy; 2026 Wedding Disc Jockey | All Rights Reserved</p>
       <p style="font-size: 0.9rem; opacity: 0.8; margin-top: 1rem;">
-        Serving wedding couples across Ontario: Toronto • Ottawa • Hamilton • London • Windsor • Kitchener • Waterloo • Kingston • Barrie • St. Catharines • Niagara Falls • Cambridge • Guelph • Brantford • Mississauga • Brampton • Markham • Richmond Hill • Vaughan • Oakville • Burlington • And Many More
+        Serving wedding couples across Ontario: Toronto • Ottawa • Hamilton • London • Windsor • Kitchener • Waterloo • Kingston • Barrie • St. Catharines • Niagara Falls • Cambridge • Guelph • Brantford • Mississauga • Brampton • Markham • Richmond Hill • Vaughan • Oakville • Burlington • Peterborough • Kawartha Lakes • Durham Region • Haliburton • Muskoka • Algonquin Park Area • And Many More
       </p>
       
       <p style="margin-top: 2rem;">
@@ -1555,6 +1695,48 @@
   </footer>
 
   <script>
+    // Mobile Navigation Functions
+    function toggleMobileNav() {
+      const hamburger = document.getElementById('hamburger');
+      const mobileNav = document.getElementById('mobileNav');
+      
+      hamburger.classList.toggle('active');
+      mobileNav.classList.toggle('active');
+      
+      // Prevent body scrolling when menu is open
+      if (mobileNav.classList.contains('active')) {
+        document.body.style.overflow = 'hidden';
+      } else {
+        document.body.style.overflow = '';
+      }
+    }
+
+    function closeMobileNav() {
+      const hamburger = document.getElementById('hamburger');
+      const mobileNav = document.getElementById('mobileNav');
+      
+      hamburger.classList.remove('active');
+      mobileNav.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    // Add click event to hamburger menu
+    document.getElementById('hamburger').addEventListener('click', toggleMobileNav);
+
+    // Close mobile nav when clicking outside
+    document.getElementById('mobileNav').addEventListener('click', function(e) {
+      if (e.target === this) {
+        closeMobileNav();
+      }
+    });
+
+    // Close mobile nav on window resize if desktop
+    window.addEventListener('resize', function() {
+      if (window.innerWidth > 768) {
+        closeMobileNav();
+      }
+    });
+
     // Enhanced smooth scrolling
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', function (e) {
@@ -1673,7 +1855,8 @@
       'Toronto', 'Ottawa', 'Hamilton', 'London', 'Windsor', 'Kitchener', 'Waterloo',
       'Cambridge', 'Guelph', 'Brantford', 'Kingston', 'Barrie', 'St. Catharines',
       'Niagara Falls', 'Mississauga', 'Brampton', 'Markham', 'Richmond Hill',
-      'Vaughan', 'Oakville', 'Burlington', 'Pickering', 'Ajax', 'Whitby', 'Oshawa'
+      'Vaughan', 'Oakville', 'Burlington', 'Pickering', 'Ajax', 'Whitby', 'Oshawa',
+      'Peterborough', 'Kawartha Lakes', 'Durham Region', 'Haliburton', 'Muskoka'
     ];
 
     // Enhanced location input with suggestions
@@ -1812,31 +1995,6 @@
         copyrightText.textContent = copyrightText.textContent.replace('2026', currentYear);
       }
     });
-
-    // Enhanced mobile navigation (could be expanded)
-    const nav = document.getElementById('navbar');
-    let touchStartY = 0;
-    let touchEndY = 0;
-
-    document.addEventListener('touchstart', e => {
-      touchStartY = e.changedTouches[0].screenY;
-    });
-
-    document.addEventListener('touchend', e => {
-      touchEndY = e.changedTouches[0].screenY;
-      handleGesture();
-    });
-
-    function handleGesture() {
-      if (touchEndY < touchStartY - 50) {
-        // Swiping up - hide nav
-        nav.style.transform = 'translateY(-100%)';
-      }
-      if (touchEndY > touchStartY + 50) {
-        // Swiping down - show nav
-        nav.style.transform = 'translateY(0)';
-      }
-    }
 
     // Add loading states for better UX
     document.querySelectorAll('.main-cta, .secondary-cta').forEach(button => {
