@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Wedding Disc Jockey | Premier Wedding DJ Services Ontario | Professional Wedding DJs</title>
+  <script src="https://www.google.com/recaptcha/enterprise.js" async defer></script>
   <meta name="description" content="Ontario's premier wedding DJ network. Professional wedding disc jockeys serving Toronto, Ottawa, Hamilton, London, Windsor, Kitchener, Waterloo, and all Central & Southern Ontario. Book your perfect wedding DJ today!">
   <meta name="keywords" content="wedding DJ Ontario, wedding disc jockey, Toronto wedding DJ, Ottawa wedding DJ, Hamilton wedding DJ, London Ontario DJ, Windsor wedding DJ, Kitchener wedding DJ, Waterloo wedding DJ, professional wedding DJs, Ontario wedding entertainment">
   <meta name="author" content="Wedding Disc Jockey Network">
@@ -1102,6 +1103,15 @@
       color: white;
       font-size: 1.2rem;
     }
+
+    /* CSS */
+#g-recaptcha-response {
+display: block !important;
+position: absolute;
+margin: -50px 0 0 0 !important;
+z-index: -999999;
+opacity: 0;
+}
   </style>
 </head>
 <body>
@@ -1619,7 +1629,7 @@
             <label for="special-requests">Special Requests & Details *</label>
             <textarea id="special-requests" name="special-requests" required placeholder="Tell us about your vision, must-play songs, cultural considerations, special announcements, timeline preferences, and any other details that will help us find your perfect DJ..."></textarea>
           </div>
-          
+          <div class="g-recaptcha" data-sitekey="6Lf_Rs4rAAAAAEuvP7GykkQySpiQjMOcQ7GhiSba"></div> <!-- replace with your recaptcha SITE key not secret key -->
           <button type="submit" class="submit-btn">Find My Perfect Wedding DJ</button>
         </form>
       </div>
@@ -2030,6 +2040,13 @@
         }
       });
     });
+    // javascript
+window.onload = function() { 
+  var el = document.getElementById('g-recaptcha-response'); 
+  if (el) { 
+    el.setAttribute('required', 'required'); 
+  } 
+}
   </script>
 
   <!-- Additional SEO structured data -->
